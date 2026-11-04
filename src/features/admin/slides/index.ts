@@ -1,0 +1,1 @@
+export { SlidesManager } from "./components/SlidesManager";

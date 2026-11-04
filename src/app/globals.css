@@ -1,0 +1,185 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-ink: #0d1733;
+  --color-forest: #203090;
+  --color-forest-soft: #2c46b0;
+  --color-clay: #0090d0;
+  --color-clay-soft: #4fb8e6;
+  --color-sand: #eef3fb;
+  --color-mist: #e1e8f4;
+  --color-paper: #f8fafd;
+  --color-line: #d3dbeb;
+  --color-muted: #5b6683;
+
+  --font-sans: var(--font-manrope);
+  --font-display: var(--font-newsreader);
+
+  --shadow-card: 0 1px 2px rgba(13, 23, 51, 0.06), 0 12px 32px rgba(13, 23, 51, 0.07);
+  --shadow-lift: 0 2px 4px rgba(13, 23, 51, 0.08), 0 24px 60px rgba(13, 23, 51, 0.12);
+}
+
+:root {
+  color-scheme: light;
+}
+
+/* Admin workspace dark theme. Scoped to `html.dark`, which is only applied on
+   /admin routes, so the public site always renders in light mode. */
+html.dark {
+  color-scheme: dark;
+
+  --color-paper: #0f1730;
+  --color-sand: #0a0f1e;
+  --color-mist: #1b2440;
+  --color-line: #2a3557;
+  --color-muted: #97a3c4;
+  --color-ink: #e7ecf8;
+
+  /* Brand accents lighten so they stay legible as text/icons on dark surfaces. */
+  --color-forest: #8ea8ff;
+  --color-clay: #5cc8f5;
+
+  /* Solid fills use deeper tones; the *-soft values are hover states for
+     solid buttons, so they stay dark enough for white label text. */
+  --color-forest-soft: #3448c9;
+  --color-clay-soft: #1f6fd6;
+
+  --admin-surface: #141d38;
+  --admin-navy: #05080f;
+  --admin-forest-solid: #2a3fb5;
+  --admin-clay-solid: #1559b8;
+}
+
+/* Keep solid brand fills and overlays readable while the accent tokens above
+   are optimised for text and tint layers. */
+.dark .bg-white {
+  background-color: var(--admin-surface);
+}
+
+.dark .bg-ink {
+  background-color: var(--admin-navy);
+}
+
+.dark .bg-ink\/50 {
+  background-color: rgb(2 6 16 / 0.65);
+}
+
+.dark .bg-forest {
+  background-color: var(--admin-forest-solid);
+}
+
+.dark .bg-clay {
+  background-color: var(--admin-clay-solid);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01" on, "cv11" on;
+}
+
+::selection {
+  background: var(--color-clay-soft);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-clay);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.display {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+  letter-spacing: -0.02em;
+}
+
+.site-grid {
+  background-image: linear-gradient(
+      to right,
+      rgba(13, 23, 51, 0.06) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(13, 23, 51, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.blueprint {
+  background-color: var(--color-forest);
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+.rich-text p + p {
+  margin-top: 1rem;
+}
+
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-fade {
+  animation: hero-fade 600ms ease-out both;
+}
+
+@keyframes drawer-in {
+  from {
+    opacity: 0.6;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.drawer-enter {
+  animation: drawer-in 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+dialog#mobile-navigation[open]::backdrop {
+  animation: backdrop-in 200ms ease-out both;
+}
+
+

@@ -1,0 +1,1 @@
+export { SupportAdmin } from "./components/SupportAdmin";
