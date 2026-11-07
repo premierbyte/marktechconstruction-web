@@ -2,8 +2,10 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import type { Principal } from "./types";
 
-const INTERNAL_API_URL = process.env.INTERNAL_API_URL ?? "http://127.0.0.1:8000";
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const INTERNAL_API_URL =
+  process.env.INTERNAL_API_URL ?? "https://api.marktechconstruction.com.ng";
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://marktechconstruction.com.ng";
 
 export type PrincipalResult =
   | { kind: "ok"; principal: Principal }
@@ -28,12 +30,15 @@ export async function fetchPrincipalServer(): Promise<PrincipalResult> {
 
     if (response.status === 401) return { kind: "unauthenticated" };
 
-    const body = (await response.json().catch(() => null)) as
-      | { data?: Principal; code?: string }
-      | null;
+    const body = (await response.json().catch(() => null)) as {
+      data?: Principal;
+      code?: string;
+    } | null;
 
     if (response.status === 403) {
-      return body?.code === "mfa_setup_required" ? { kind: "mfa_setup_required" } : { kind: "mfa_required" };
+      return body?.code === "mfa_setup_required"
+        ? { kind: "mfa_setup_required" }
+        : { kind: "mfa_required" };
     }
 
     if (!response.ok || !body?.data) return { kind: "error" };
