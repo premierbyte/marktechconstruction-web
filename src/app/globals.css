@@ -17,8 +17,10 @@
   --font-sans: var(--font-manrope);
   --font-display: var(--font-newsreader);
 
-  --shadow-card: 0 1px 2px rgba(13, 23, 51, 0.06), 0 12px 32px rgba(13, 23, 51, 0.07);
-  --shadow-lift: 0 2px 4px rgba(13, 23, 51, 0.08), 0 24px 60px rgba(13, 23, 51, 0.12);
+  --shadow-card:
+    0 1px 2px rgba(13, 23, 51, 0.06), 0 12px 32px rgba(13, 23, 51, 0.07);
+  --shadow-lift:
+    0 2px 4px rgba(13, 23, 51, 0.08), 0 24px 60px rgba(13, 23, 51, 0.12);
 }
 
 :root {
@@ -82,7 +84,9 @@ body {
   background-color: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-  font-feature-settings: "ss01" on, "cv11" on;
+  font-feature-settings:
+    "ss01" on,
+    "cv11" on;
 }
 
 ::selection {
@@ -115,22 +119,16 @@ body {
 }
 
 .site-grid {
-  background-image: linear-gradient(
-      to right,
-      rgba(13, 23, 51, 0.06) 1px,
-      transparent 1px
-    ),
+  background-image:
+    linear-gradient(to right, rgba(13, 23, 51, 0.06) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(13, 23, 51, 0.06) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
 .blueprint {
   background-color: var(--color-forest);
-  background-image: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0.05) 1px,
-      transparent 1px
-    ),
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 36px 36px;
 }
@@ -182,4 +180,12 @@ dialog#mobile-navigation[open]::backdrop {
   animation: backdrop-in 200ms ease-out both;
 }
 
-
+/* Force hide the Netlify automated platform badge */
+#netlify-badge-wrapper,
+div[class*="netlify-badge"],
+iframe[src*="netlify"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
