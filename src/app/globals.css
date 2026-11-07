@@ -27,6 +27,10 @@
   color-scheme: light;
 }
 
+.nl-badge {
+  display: none !important;
+}
+
 /* Admin workspace dark theme. Scoped to `html.dark`, which is only applied on
    /admin routes, so the public site always renders in light mode. */
 html.dark {
@@ -188,8 +192,4 @@ iframe[src*="netlify"] {
   visibility: hidden !important;
   opacity: 0 !important;
   pointer-events: none !important;
-}
-
-.nl-badge {
-  display: none !important;
 }
