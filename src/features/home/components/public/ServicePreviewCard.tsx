@@ -12,13 +12,11 @@ export function ServicePreviewCard({
 }) {
   const media = service.media;
 
-  const imageBaseUrl = process.env.INTERNAL_API_URL || "";
-
   return (
     <article className="group relative flex h-full min-h-[18rem] flex-col justify-end overflow-hidden rounded-2xl border border-white/10 p-6 text-white transition-all duration-300 hover:-translate-y-1 hover:border-clay/40 hover:shadow-lift">
       {media?.url ? (
         <Image
-          src={`${imageBaseUrl}/${media.url}`}
+          src={media.url}
           alt={media.alt || ""}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
